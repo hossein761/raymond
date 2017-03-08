@@ -72,7 +72,7 @@ func ensureValidHelper(name string, funcValue reflect.Value) {
 }
 
 // findHelper finds a globally registered helper
-func findHelper(name string) reflect.Value {
+func FindHelper(name string) reflect.Value {
 	helpersMutex.RLock()
 	defer helpersMutex.RUnlock()
 
