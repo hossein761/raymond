@@ -72,11 +72,21 @@ func ensureValidHelper(name string, funcValue reflect.Value) {
 }
 
 // findHelper finds a globally registered helper
-func FindHelper(name string) reflect.Value {
+func findHelper(name string) reflect.Value {
 	helpersMutex.RLock()
 	defer helpersMutex.RUnlock()
 
 	return helpers[name]
+}
+
+// Check if the Handler Exists
+func HandlerExists(name string) bool {
+	var zero reflect.Value
+	res:= findHelper(name)
+	if res == zero{
+		return false
+	}
+	return true
 }
 
 // newOptions instanciates a new Options
